@@ -69,11 +69,17 @@ PostgreSQL Python: Querying Data: Retrieving Data from Tables
 
 def get_model_upload_s ():
     """ query data from the model_upload_s  table """
+    
     conn = None
+    
     try:
+    
         params = config()
+        
         conn = psycopg2.connect(**params)
+        
         cur = conn.cursor()
+        
         cur.execute("SELECT trans_num, merchant, category, amt, gender, city, state, zip, lat, long, 
                      city_pop, job, unix_time, merch_lat, merch_long, is_fraud”
 
@@ -81,15 +87,25 @@ def get_model_upload_s ():
                      ORDER BY trans_num")
 
         print("Credit records from model_upload_s file: ", cur.rowcount)
+        
         row = cur.fetchone()
+        
         while row is not None:
+        
             print(row)
+            
             row = cur.fetchone()
+            
         cur.close()
+        
     except (Exception, psycopg2.DatabaseError) as error:
+    
         print(error)
+        
     finally:
+    
         if conn is not None:
+        
             conn.close()
 
 
