@@ -24,9 +24,13 @@ sudo python setup.py install
         user=”postgres”
         password=”ABCD1234”)    (Password set up for Postgres)
 
-4.	Add database.ini to the .gitignore file
 
-5.	Config() function read the database.ini file
+
+4. Add database.ini to the .gitignore file
+
+Config() function read the database.ini file
+
+
 
     #!/usr/bin/python
 
