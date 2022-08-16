@@ -9,6 +9,8 @@
   - Credit Card Fraud Trends and Predictions
 - Reason they selected the topic
   - We selected this topic due to our team's background in the financial services sector, including two teammates with credit card experience
+  - Additionally, the increased risk of credit card fraud can create significant financial and reputational losses for businesses so it is critical to detect fraudulent activity in a fast and efficient manner.
+  - The model we have built can be utilized by businesses, such as credit card companies and banks, to create a more accurate and expedited fraud detection process. 
 - Description of the source data
   - Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a   full two-year period. It contains both legitimate and fraudulent transactions
 - Questions they hope to answer with the data
