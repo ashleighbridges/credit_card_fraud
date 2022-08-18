@@ -5,19 +5,27 @@
 - Slack will be our main point of communication outside of meetings
 
 ## Project Information:
-- Selected topic
-  - Credit Card Fraud Trends and Predictions
-- Reason they selected the topic
+- Reason we selected this topic:
   - We selected this topic due to our team's background in the financial services sector, including two teammates with credit card experience
   - Additionally, the increased risk of credit card fraud can create significant financial and reputational losses for businesses so it is critical to detect fraudulent activity in a fast and efficient manner.
   - The model we have built can be utilized by businesses, such as credit card companies and banks, to create a more accurate and expedited fraud detection process. 
-- Description of the source data
-  - Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a   full two-year period. It contains both legitimate and fraudulent transactions
-- Questions they hope to answer with the data
+- Questions we hope to answer with the data:
   - Are there any trends in the data?
   - Can any of these trends be used to predict and prevent future fraudulent transactions?
 
-Link to dataset: https://www.kaggle.com/datasets/kartik2112/fraud-detection
+## Dataset Description:
+Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a  full two year period. It contains both legitimate and fraudulent transactions
+- *Link to dataset: https://www.kaggle.com/datasets/kartik2112/fraud-detection*
+
+Our team reviewed the data from Kaggle and created an Entity Relationship Diagram to visualize how best to split up the data to best suit our needs. We decided to create two separate tables within PostgreSQL:
+- Model_Upload table: Contains those attributes which can be used in machine learning models
+- Personal_Info table: Contains those attributes which are more personal in nature and is commonly referred to as "PII"
+
+![ERD](https://user-images.githubusercontent.com/100883212/185511296-cf307011-007d-4764-a5cf-3319a40c654f.png)
+
+*Entity Relationship Diagram*
+
+After verifying all of the necessary data was imported correctly, we placed the tables in an S3 area within AWS to then be linked to the machine learning model.
 
 ## Machine Learning Process:
 As the purpose of the machine learning is to predict if a transaction is fraud (binary outcome), we immediately leaned towards a logistic regression testing model. The next decision was between supervised or unsupervised. We chose supervised as we already knew the question we wanted answered (is this fraud or not?). 
