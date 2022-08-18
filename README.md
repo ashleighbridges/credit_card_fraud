@@ -26,7 +26,7 @@ Steps involved with the derivation of our dataset and database creation involved
 
              Screenshots of the above steps can be viewed at: 
 
-                        XXXXXXXXXXXXXXXXX
+             https://github.com/ashleighbridges/credit_card_fraud/tree/main
 
 
 
