@@ -1,6 +1,5 @@
-# credit_card_fraud
 
-=======
+
 # Credit Card Fraud Trends and Predictions
 
 ## Communication Protocols:
@@ -19,8 +18,9 @@
   - Can any of these trends be used to predict and prevent future fraudulent transactions?
 
 Link to dataset: https://www.kaggle.com/datasets/kartik2112/fraud-detection
->>>>>>> Dashboard
 
 ## Google Slides Link
 
 https://docs.google.com/presentation/d/1clOUcDR-ilnj36s_9WvjgXK9cDWncTfy4-4wAS_239I/edit?usp=sharing
+=======
+
