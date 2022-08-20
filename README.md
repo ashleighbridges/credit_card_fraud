@@ -1,3 +1,5 @@
+
+
 # Credit Card Fraud Trends and Predictions
 
 ## Communication Protocols:
@@ -12,6 +14,10 @@
 - Questions we hope to answer with the data:
   - Are there any trends in the data?
   - Can any of these trends be used to predict and prevent future fraudulent transactions?
+
+## Google Slides Link
+
+https://docs.google.com/presentation/d/1clOUcDR-ilnj36s_9WvjgXK9cDWncTfy4-4wAS_239I/edit?usp=sharing
 
 ## Dataset Description:
 Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a  full two year period. It contains both legitimate and fraudulent transactions
@@ -51,4 +57,5 @@ The final results were as follows:
 
 ## Model Improvement:
 If we had more time, we would work to quantify distance of the transaction from the home market (if this was not a moto transaction). We would attempt to identify the type of transaction (chip, swipe, moto, token) and we would quantify if the spend was out of the norm for the customer. One thing we identified was that much of the fraud in this set were large dollar transactions, while our experience working in fraud has been that most fraudulent transactions and the total fraud on accounts are under $200 per transaction. As such, our model may inaccurately favor detecting larger transactions as fraud, which would not be evident until we were able to factor in more low-dollar fraud transactions.
+
 
