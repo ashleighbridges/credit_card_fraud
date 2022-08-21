@@ -95,7 +95,7 @@ Steps:
      return db
 
 
-8	Query #1	The following queries data from a Postgres database using the fetchone() method. This data is used to populate tables used in Pandas for 
+8	Query #a	The following queries data from a Postgres database using the fetchone() method. This data is used to populate tables used in Pandas for 
 
                          machine learning analysis
 			 
@@ -142,7 +142,7 @@ Steps:
 
 
 
-9	Query #2: JOIN	To select those fraud amounts greater than 1000
+9	Query #b: JOIN	To select those fraud amounts greater than 1000
 
 	def get_model_upload_s ():
     """ query data from the model_upload_s  table """
@@ -186,7 +186,7 @@ Steps:
             conn.close()
 
 
-10	Query #3: Counts: To select count of fraud cases
+10	Query #c: Counts: To select count of fraud cases
 		def get_model_upload_s ():
     """ query data from the model_upload_s  table """
         conn = None
