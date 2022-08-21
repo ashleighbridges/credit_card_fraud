@@ -30,6 +30,197 @@ Steps involved with the derivation of our dataset and database creation involved
 
 
 
+Database: Python Connection
+
+	Postgres Connection Procedures	
+Steps: 		
+1	Create Database in Postgres	Credit_Card_Fraud
+		
+2	Create tables in Postgres	
+		model_upload_s
+		personal_info_s
+		
+3	Set up within Anaconda: 	pip install psycopg2
+		
+4	Set up Build: 	
+		python setup.py build
+		sudo python setup.py install
+		
+4	Python Coding: 	Connect to the Postgres Database by use of keyword arguments: Checking username and password
+		conn = psycopg2.connect(
+host=”localhost”,
+database-“Credit_Card_Fraud”,
+user=”postgres”
+password=”ABCD1234”)    (Password set up for Postgres)
+
+		
+5	 Add database.ini to the .gitignore file
+	
+6	The .gitignore file will be shown as this:	database.ini
+7	The config() function is placed in the config.py file:	The following config() function reads the database.ini file and returns connection parameters. The config fig() function is placed in the config.py file as shown
+		#!/usr/bin/python
+
+from configparser import ConfigParser
+
+def config(filename='database.ini', section='postgresql'):
+
+    # create a parser
+    
+    parser = ConfigParser()
+    
+    # read config file
+    
+    parser.read(filename)
+    
+    # get section, default to postgresql
+    
+    db = {}
+    
+    if parser.has_section(section):
+    
+        params = parser.items(section)
+        for param in params:
+              db[param[0]] = param[1]
+       
+    else:
+    
+       raise Exception('Section {0} not found in the {1} file'.format(section, filename))
+          
+
+     return db
+
+
+8	Query #1	The following queries data from a Postgres database using the fetchone() method. This data is used to populate tables used in Pandas for             machine learning analysis
+		def get_model_upload_s ():
+    """ query data from the model_upload_s  table """
+        conn = None
+   
+    try:
+    
+        params = config()
+        
+        conn = psycopg2.connect(**params)
+        
+        cur = conn.cursor()
+        
+        cur.execute("SELECT trans_num, merchant, category, amt, gender, city, state, zip, lat, long, 
+                     city_pop, job, unix_time, merch_lat, merch_long, is_fraud”
+
+                     FROM  model_upload_s  
+                     ORDER BY trans_num")
+
+        print("Credit records from model_upload_s file: ", cur.rowcount)
+        
+        row = cur.fetchone()
+        
+        while row is not None:
+        
+            print(row)
+            
+            row = cur.fetchone()
+            
+        cur.close()
+        
+            except (Exception, psycopg2.DatabaseError) as error:
+    
+            print(error)
+        
+    finally:
+    
+            if conn is not None:
+        
+            conn.close()
+
+
+
+
+9	Query #2: JOIN	To select those fraud amounts greater than 1000
+		def get_model_upload_s ():
+    """ query data from the model_upload_s  table """
+        conn = None
+   
+    try:
+    
+        params = config()
+        
+        conn = psycopg2.connect(**params)
+        
+        cur = conn.cursor()
+        
+        cur.execute("Select pi.first, pi.last, pi.street, mu.city, mu.amt, mu.merchant, mu.job
+                                 from model_upload_s mu
+                                 JOIN personal_info_s pi
+                                 ON mu.trans_num = pi.trans_num
+                                 where mu.amt> 1000”
+
+
+        print("Credit records from model_upload_s file: ", cur.rowcount)
+        
+        row = cur.fetchone()
+        
+        while row is not None:
+        
+            print(row)
+            
+            row = cur.fetchone()
+            
+         cur.close()
+        
+    except (Exception, psycopg2.DatabaseError) as error:
+    
+        print(error)
+        
+    finally:
+    
+        if conn is not None:
+        
+            conn.close()
+
+
+10	Query #3: Counts: To select count of fraud cases
+		def get_model_upload_s ():
+    """ query data from the model_upload_s  table """
+        conn = None
+   
+    try:
+    
+        params = config()
+        
+        conn = psycopg2.connect(**params)
+        
+        cur = conn.cursor()
+
+        
+        cur.execute("Select count (*)
+                                 From model_upload_s mu
+                                 JOIN personal_info_s  pi
+                                 ON mu.trans_num = pi.trans_num
+                                 where mu.amt > 1000”
+
+        print("Credit records from model_upload_s file: ", cur.rowcount)
+        
+        row = cur.fetchone()
+        
+        while row is not None:
+        
+            print(row)
+            
+            row = cur.fetchone()
+            
+        cur.close()
+        
+    except (Exception, psycopg2.DatabaseError) as error:
+    
+        print(error)
+        
+    finally:
+    
+        if conn is not None:
+        
+            conn.close()
+
+
+		
 
 
 
