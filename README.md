@@ -48,33 +48,38 @@ Steps:
 		
 4	Python Coding: 	Connect to the Postgres Database by use of keyword arguments: Checking username and password
 		conn = psycopg2.connect(
-host=”localhost”,
-database-“Credit_Card_Fraud”,
-user=”postgres”
-password=”ABCD1234”)    (Password set up for Postgres)
+        host=”localhost”,
+	
+        database-“Credit_Card_Fraud”,
+	
+        user=”postgres”
+        password=”ABCD1234”) (Password set up for Postgres)
 
 		
 5	 Add database.ini to the .gitignore file
 	
-6	The .gitignore file will be shown as this:	database.ini
-7	The config() function is placed in the config.py file:	The following config() function reads the database.ini file and returns connection parameters. The config fig() function is placed in the config.py file as shown
+6	The .gitignore file will be shown as this: database.ini
+
+7	The config() function is placed in the config.py file:	The following config() function reads the database.ini file and returns connection parameters.
+
+        The config fig() function is placed in the config.py file as shown
 		#!/usr/bin/python
 
-from configparser import ConfigParser
+        from configparser import ConfigParser
 
-def config(filename='database.ini', section='postgresql'):
+        def config(filename='database.ini', section='postgresql'):
 
-    # create a parser
+        # create a parser
     
-    parser = ConfigParser()
+        parser = ConfigParser()
     
-    # read config file
+        # read config file
     
-    parser.read(filename)
+        parser.read(filename)
     
-    # get section, default to postgresql
+        # get section, default to postgresql
     
-    db = {}
+        db = {}
     
     if parser.has_section(section):
     
@@ -90,8 +95,11 @@ def config(filename='database.ini', section='postgresql'):
      return db
 
 
-8	Query #1	The following queries data from a Postgres database using the fetchone() method. This data is used to populate tables used in Pandas for             machine learning analysis
-		def get_model_upload_s ():
+8	Query #1	The following queries data from a Postgres database using the fetchone() method. This data is used to populate tables used in Pandas for 
+
+                         machine learning analysis
+			 
+	def get_model_upload_s ():
     """ query data from the model_upload_s  table """
         conn = None
    
@@ -135,7 +143,8 @@ def config(filename='database.ini', section='postgresql'):
 
 
 9	Query #2: JOIN	To select those fraud amounts greater than 1000
-		def get_model_upload_s ():
+
+	def get_model_upload_s ():
     """ query data from the model_upload_s  table """
         conn = None
    
