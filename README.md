@@ -33,7 +33,8 @@ Steps involved with the derivation of our dataset and database creation involved
 Database: Python Connection
 
 	Postgres Connection Procedures	
-Steps: 		
+Steps: 
+
 1	Create Database in Postgres	Credit_Card_Fraud
 		
 2	Create tables in Postgres	
