@@ -37,23 +37,28 @@ Steps:
 
 1	Create Database in Postgres	Credit_Card_Fraud
 		
-2	Create tables in Postgres	
+2	Create tables in Postgres
+
 		model_upload_s
+		
 		personal_info_s
 		
 3	Set up within Anaconda: 	pip install psycopg2
 		
-4	Set up Build: 	
+4	Set up Build: 
+
 		python setup.py build
+		
 		sudo python setup.py install
 		
 4	Python Coding: 	Connect to the Postgres Database by use of keyword arguments: Checking username and password
-		conn = psycopg2.connect(
-        host=”localhost”,
+
+	conn = psycopg2.connect(host=”localhost”,
 	
         database-“Credit_Card_Fraud”,
 	
         user=”postgres”
+	
         password=”ABCD1234”) (Password set up for Postgres)
 
 		
@@ -64,7 +69,8 @@ Steps:
 7	The config() function is placed in the config.py file:	The following config() function reads the database.ini file and returns connection parameters.
 
         The config fig() function is placed in the config.py file as shown
-		#!/usr/bin/python
+	
+	#!/usr/bin/python
 
         from configparser import ConfigParser
 
@@ -85,6 +91,7 @@ Steps:
     if parser.has_section(section):
     
         params = parser.items(section)
+	
         for param in params:
               db[param[0]] = param[1]
        
@@ -101,7 +108,9 @@ Steps:
                          machine learning analysis
 			 
 	def get_model_upload_s ():
+	
     """ query data from the model_upload_s  table """
+    
         conn = None
    
     try:
@@ -112,10 +121,10 @@ Steps:
         
         cur = conn.cursor()
         
-        cur.execute("SELECT trans_num, merchant, category, amt, gender, city, state, zip, lat, long, 
-                     city_pop, job, unix_time, merch_lat, merch_long, is_fraud”
+        cur.execute("SELECT trans_num, merchant, category, amt, gender, city, state, zip, lat, long, city_pop, job, unix_time, merch_lat, merch_long, is_fraud”
 
-                     FROM  model_upload_s  
+                     FROM  model_upload_s
+		     
                      ORDER BY trans_num")
 
         print("Credit records from model_upload_s file: ", cur.rowcount)
@@ -146,7 +155,9 @@ Steps:
 9	Query #b: JOIN	To select those fraud amounts greater than 1000
 
 	def get_model_upload_s ():
+	
     """ query data from the model_upload_s  table """
+    
         conn = None
    
     try:
@@ -158,9 +169,13 @@ Steps:
         cur = conn.cursor()
         
         cur.execute("Select pi.first, pi.last, pi.street, mu.city, mu.amt, mu.merchant, mu.job
+	
                                  from model_upload_s mu
+				 
                                  JOIN personal_info_s pi
+				 
                                  ON mu.trans_num = pi.trans_num
+				 
                                  where mu.amt> 1000”
 
 
@@ -188,8 +203,11 @@ Steps:
 
 
 10	Query #c: Counts: To select count of fraud cases
+
 		def get_model_upload_s ():
+		
     """ query data from the model_upload_s  table """
+    
         conn = None
    
     try:
@@ -203,8 +221,11 @@ Steps:
         
         cur.execute("Select count (*)
                                  From model_upload_s mu
+				 
                                  JOIN personal_info_s  pi
+				 
                                  ON mu.trans_num = pi.trans_num
+				 
                                  where mu.amt > 1000”
 
         print("Credit records from model_upload_s file: ", cur.rowcount)
