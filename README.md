@@ -103,9 +103,9 @@ Steps:
      return db
 
 
-8	Query #a	The following queries data from a Postgres database using the fetchone() method. This data is used to populate tables used in Pandas for 
+8	Query #a The following queries data from a Postgres database using the fetchone() method. This data is used to populate tables used in Pandas for 
 
-                         machine learning analysis
+                 machine learning analysis
 			 
 	def get_model_upload_s ():
 	
