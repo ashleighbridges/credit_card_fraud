@@ -1,9 +1,5 @@
 # Credit Card Fraud Trends and Predictions
 
-## Communication Protocols:
-- We will meet during class time on Tuesdays/Thursdays, once weekly on either Sunday or Monday evening, and as needed at other times
-- Slack will be our main point of communication outside of meetings
-
 ## Project Information:
 - Reason we selected this topic:
   - We selected this topic due to our team's background in the financial services sector, including two teammates with credit card experience
