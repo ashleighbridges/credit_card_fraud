@@ -60,6 +60,11 @@ If we had more time, we would work to quantify distance of the transaction from 
 
 ## Tableau Dashboard Visualization
 
+<img width="204" alt="Total_transaction_amt" src="https://user-images.githubusercontent.com/101374716/185832983-88e10af7-2395-4904-b2c6-242550716ff6.png">
+
+Total amount of fraudulent transactions
+
+
 Please see description of each visualization below. By clicking on the Tableau Dashboard link you will be able to deep dive into each worksheet as they are interactive.
 
 <img width="270" alt="Cat_Trans_percentages" src="https://user-images.githubusercontent.com/101374716/185827674-b51f75dc-afaf-4405-ba96-b6d411869ba7.png">
