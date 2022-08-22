@@ -15,6 +15,10 @@
 
 *Link to Google Slides:* https://docs.google.com/presentation/d/1clOUcDR-ilnj36s_9WvjgXK9cDWncTfy4-4wAS_239I/edit?usp=sharing
 
+## Dashboard
+
+*Link to Dashboard:* https://public.tableau.com/app/profile/ashleigh.bridges/viz/Credit_Card_Fraud_v7/Observations?publish=yes
+
 ## Dataset Description:
 Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a  full two year period. It contains both legitimate and fraudulent transactions
 - *Link to dataset: https://www.kaggle.com/datasets/kartik2112/fraud-detection*
