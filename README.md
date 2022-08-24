@@ -1,10 +1,4 @@
-Credit Card Fraud Trends and Predictions
-
-Communication Protocols:
-
-We will meet during class time on Tuesdays/Thursdays, once weekly on either Sunday or Monday evening, and as needed at other times
-Slack will be our main point of communication outside of meetings
-Project Information:
+# Credit Card Fraud Trends and Predictions
 
 ## Project Information:
 - Reason we selected this topic:
@@ -21,7 +15,8 @@ Project Information:
 
 ## Dashboard
 
-*Link to Dashboard:* https://public.tableau.com/app/profile/ashleigh.bridges/viz/Credit_Card_Fraud_v7/Observations?publish=yes
+*Link to Dashboard:* https://public.tableau.com/app/profile/ashleigh.bridges/viz/Credit_Card_Fraud_vf/Observations?publish=yes<br/>
+*Note: Use navy buttons in the top right corner to navigate through the dashboard*
 
 ## Dataset Description:
 Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a  full two year period. It contains both legitimate and fraudulent transactions
@@ -203,47 +198,31 @@ If we had more time, we would work to quantify distance of the transaction from 
 
 ## Tableau Dashboard Visualization
 
-<img width="204" alt="Total_transaction_amt" src="https://user-images.githubusercontent.com/101374716/185832983-88e10af7-2395-4904-b2c6-242550716ff6.png">
+Please see description of each visualization below. By clicking on the Tableau Dashboard link you will be able to deep dive into each interactive worksheet
 
-Total amount of fraudulent transactions
+![transamt](https://user-images.githubusercontent.com/100883212/186285254-08f7470a-4e37-4341-94fd-e6098501d8e0.png)<br/>
+*Total amount ($) of fraudulent transactions*
 
+ 
+![transcategory](https://user-images.githubusercontent.com/100883212/186285339-f95d35a7-22f9-4e93-a673-6708b9d15834.png)<br/>
+*Transactions by Merchant Category visualization shows how the total number of transactions was distributed among each merchant category* 
 
-Please see description of each visualization below. By clicking on the Tableau Dashboard link you will be able to deep dive into each worksheet as they are interactive.
+ 
+![fraudcategory](https://user-images.githubusercontent.com/100883212/186285602-f3f20694-ec2f-411d-8ddf-5de81881bc94.png)<br/>
+*Fraud by Merchant Category visualization shows how the total number of fraudulent transactions was distributed among each merchant category*
 
-<img width="270" alt="Cat_Trans_percentages" src="https://user-images.githubusercontent.com/101374716/185827674-b51f75dc-afaf-4405-ba96-b6d411869ba7.png">
+ 
+![transgender](https://user-images.githubusercontent.com/100883212/186285747-64a65755-b9cc-45cc-ac65-56cf5f73ecd7.png)<br/>
+*Transactions by Gender visualization shows the distribution of legitimate and fraudulent transactions by gender* 
 
-Category Transaction Percentages visualization shows the percentage total count of merchant categories. You will be able to click on each on of the dots to see the percentage of each category. You can also filter categories and show fraudulent and non-fraudulent charges. 
+ 
+![fraudcity](https://user-images.githubusercontent.com/100883212/186286037-c5c18752-96ac-4822-9cd7-1cadeb5e0125.png)<br/>
+*Fraud by City visualization shows an interactive map of cities where fraudulent transactions occured. Once you hover over each circle will display the City/State, Zip code, total ($) of fraudulent transactions, and number of fraudulent transactions* 
 
+ 
+![transweek](https://user-images.githubusercontent.com/100883212/186286277-3465ca6d-a050-43f5-8dfe-9985e1e7b076.png)<br/>
+*Transactions by Week shows the distribution of fraudulent vs. legitimate transactions per week*
 
-<img width="300" alt="Transactions_By_Gender" src="https://user-images.githubusercontent.com/101374716/185827743-f267cd21-0529-4d5c-a880-02232462274c.png">
-
-Transactions by Gender visualization shows the count of transaction via Female or Male. You are able to click each bar to get the count.
-
-
-<img width="239" alt="Fraud_Gender" src="https://user-images.githubusercontent.com/101374716/185827988-87b430b3-392a-478f-b4c6-1abbf81f3ae9.png">
-
-Fraud by Gender shows fradulent and non-fradulent charges via gender. You can also filter from fradulent to non-fraudlent and female or male. 
-
-<img width="304" alt="Trans_Percent_by_Gender" src="https://user-images.githubusercontent.com/101374716/185828250-b0d9109e-f3f8-4cc1-9e56-b4b91ad058e8.png">
-
-Transaction percent by Gender will visualize the percentage of fraud and non-fraudulent transactions by gender. 
-
-
-<img width="1088" alt="Fraud_city" src="https://user-images.githubusercontent.com/101374716/185828116-2356272f-43cf-4e0f-83b3-1492b1a8822d.png">
-
-Fraudlent Charges by City visualization shows an interactive map of cities where fraudulent charges happened. Once you hover over each circle it will show City, Zip code, and count of transactions. 
-
-
-<img width="793" alt="Fraud_Amt_city" src="https://user-images.githubusercontent.com/101374716/185828128-c7587893-6421-4f0b-82a1-076f123bc81d.png">
-
-Fraud amount by city is another interactive map to see the amount of fraudulent charges by city. Hover over the circle to see City, Zipcode, and Total Fradulent amount. 
-
-
-<img width="1234" alt="Fraud_by_week" src="https://user-images.githubusercontent.com/101374716/185828177-3b419d37-4279-4d55-b632-a967a70bf586.png">
-
-This interactive graph helps you view total amount of fraud vs non-fraud per week. You can click into the map week over week to get a summary or amount of fradulent or non-fraudlent charges for that week. 
-
-
-<img width="1062" alt="Fraud_by_age" src="https://user-images.githubusercontent.com/101374716/185828421-94466646-443c-408c-9792-31900285f532.png">
-
-Fraud by age visualization shows the age vs the amount of the transaction. You are able to see the age via fraudulent or non-fraudlent charges. You can click on each graph line over a particular age to see the total amount by that age. 
+ 
+![fraudweek](https://user-images.githubusercontent.com/100883212/186286365-bb1b9067-5c02-45a8-998a-3778b566890e.png)<br/>
+*Fraud by Week shows a closer look at how the fraudulent transactions were distributed by amount ($) over each week*
