@@ -15,7 +15,8 @@
 
 ## Dashboard
 
-*Link to Dashboard:* https://public.tableau.com/app/profile/ashleigh.bridges/viz/Credit_Card_Fraud_v7/Observations?publish=yes
+*Link to Dashboard:* https://public.tableau.com/app/profile/ashleigh.bridges/viz/Credit_Card_Fraud_vf/Observations?publish=yes<br/>
+*Note: Use navy buttons in the top right corner to navigate through the dashboard*
 
 ## Dataset Description:
 Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a  full two year period. It contains both legitimate and fraudulent transactions
