@@ -1,10 +1,4 @@
-
-
 # Credit Card Fraud Trends and Predictions
-
-## Communication Protocols:
-- We will meet during class time on Tuesdays/Thursdays, once weekly on either Sunday or Monday evening, and as needed at other times
-- Slack will be our main point of communication outside of meetings
 
 ## Project Information:
 - Reason we selected this topic:
@@ -15,9 +9,14 @@
   - Are there any trends in the data?
   - Can any of these trends be used to predict and prevent future fraudulent transactions?
 
-## Google Slides Link
+## Presentation
 
-https://docs.google.com/presentation/d/1clOUcDR-ilnj36s_9WvjgXK9cDWncTfy4-4wAS_239I/edit?usp=sharing
+*Link to Google Slides:* https://docs.google.com/presentation/d/1clOUcDR-ilnj36s_9WvjgXK9cDWncTfy4-4wAS_239I/edit?usp=sharing
+
+## Dashboard
+
+*Link to Dashboard:* https://public.tableau.com/app/profile/ashleigh.bridges/viz/Credit_Card_Fraud_vf/Observations?publish=yes<br/>
+*Note: Use navy buttons in the top right corner to navigate through the dashboard*
 
 ## Dataset Description:
 Our dataset is a simulated credit card transaction dataset, covering the cards of 1000 customers with a pool of 800 merchants. The dataset covers transactions over a  full two year period. It contains both legitimate and fraudulent transactions
@@ -32,6 +31,145 @@ Our team reviewed the data from Kaggle and created an Entity Relationship Diagra
 *Entity Relationship Diagram*
 
 After verifying all of the necessary data was imported correctly, we placed the tables in an S3 area within AWS to then be linked to the machine learning model.
+
+The following steps were used to connect the PostgreSQL database to the machine learning model:
+
+```
+1. Create Database in Postgres Credit_Card_Fraud
+
+2. Create tables in Postgres
+   	model_upload_s
+	personal_info_s
+
+3. Set up within Anaconda: pip install psycopg2
+
+4. Set up Build:
+	python setup.py build
+	sudo python setup.py install
+
+   5. Python Coding: Connect to the Postgres Database by use of keyword arguments: Checking username and password
+        conn = psycopg2.connect(host=”localhost”,
+        database-“Credit_Card_Fraud”,
+        user=”postgres”
+        password=”ABCD1234”) (Password set up for Postgres)
+
+        6. Add database.ini to the .gitignore file
+
+        7. The .gitignore file will be shown as this: database.ini
+
+           8. The config() function is placed in the config.py file: The following config()    
+              function reads the database.ini file and returns connection parameters.
+
+    The config fig() function is placed in the config.py file as shown
+    #!/usr/bin/python
+        from configparser import ConfigParser
+     def config(filename='database.ini', section='postgresql'):
+
+    # create a parser
+    parser = ConfigParser()
+
+    # read config file
+    parser.read(filename)
+
+    # get section, default to postgresql
+    db = {}
+
+if parser.has_section(section):
+    params = parser.items(section)
+    for param in params:
+          db[param[0]] = param[1]
+   
+ else:
+    raise Exception('Section {0} not found in the {1} file'.format(section, filename))
+ 
+return db
+
+9. Query #a The following queries data from a Postgres database using the fetchone() method. 
+            This data is used to populate tables used in Pandas for machine learning analysis
+		 
+def get_model_upload_s ():
+""" query data from the model_upload_s  table """
+    conn = None
+
+try:
+    params = config()
+    conn = psycopg2.connect(**params)
+    cur = conn.cursor()
+    cur.execute("SELECT trans_num, merchant, category, amt, gender, city, state, zip,          
+                 lat, long, city_pop, job, unix_time, merch_lat, merch_long, 
+                 is_fraud” 
+                 FROM  model_upload_s	    
+                 ORDER BY trans_num")
+    print("Credit records from model_upload_s file: ", cur.rowcount)
+    row = cur.fetchone()
+        while row is not None:    
+        print(row)        
+        row = cur.fetchone()        
+    cur.close()    
+        except (Exception, psycopg2.DatabaseError) as error:
+        print(error)    
+finally:
+        if conn is not None:    
+        conn.close()
+
+  Query #b: JOIN To select those fraud amounts greater than 1000
+  def get_model_upload_s ():
+     """ query data from the model_upload_s  table """
+     conn = None
+
+try:
+
+    params = config()
+    conn = psycopg2.connect(**params)    
+    cur = conn.cursor()    
+    cur.execute("Select pi.first, pi.last, pi.street, mu.city, mu.amt, mu.merchant, 
+                 mu.job
+                             from model_upload_s mu			 
+                             JOIN personal_info_s pi			 
+                             ON mu.trans_num = pi.trans_num			 
+                             where mu.amt> 1000”
+
+    print("Credit records from model_upload_s file: ", cur.rowcount)    
+    row = cur.fetchone()    
+    while row is not None:    
+        print(row)        
+        row = cur.fetchone()        
+     cur.close()
+    
+except (Exception, psycopg2.DatabaseError) as error:
+    print(error)    
+finally:
+    if conn is not None:    
+        conn.close()            
+
+10. Query #c: Counts: To select count of fraud cases
+	def get_model_upload_s ():	
+""" query data from the model_upload_s  table """
+    conn = None
+
+try:
+    params = config()    
+    conn = psycopg2.connect(**params)    
+    cur = conn.cursor()    
+    cur.execute("Select count (*)
+                             From model_upload_s mu			 
+                             JOIN personal_info_s  pi			 
+                             ON mu.trans_num = pi.trans_num			 
+                             where mu.amt > 1000”
+    print("Credit records from model_upload_s file: ", cur.rowcount)    
+    row = cur.fetchone()    
+    while row is not None:    
+        print(row)        
+        row = cur.fetchone()        
+    cur.close()    
+except (Exception, psycopg2.DatabaseError) as error:
+    print(error)
+    
+finally:
+
+    if conn is not None:    
+        conn.close()
+```
 
 ## Machine Learning Process:
 As the purpose of the machine learning is to predict if a transaction is fraud (binary outcome), we immediately leaned towards a logistic regression testing model. The next decision was between supervised or unsupervised. We chose supervised as we already knew the question we wanted answered (is this fraud or not?). 
@@ -54,8 +192,37 @@ The final results were as follows:
   - This was only 76% for fraud and is where the most opportunity for the model remained
   - This indicates that for every 3 transactions identified as fraud, there was still 1 fraudulent transaction not being identified
 - While the recall rate of fraud transactions was better in other iterations, they resulted in lower recall rates for valid transactions and the amount of work and costs needed to clear that volume would likely outweigh the potential losses of the missed fraudulent transactions
+Model Improvement:
 
-## Model Improvement:
 If we had more time, we would work to quantify distance of the transaction from the home market (if this was not a moto transaction). We would attempt to identify the type of transaction (chip, swipe, moto, token) and we would quantify if the spend was out of the norm for the customer. One thing we identified was that much of the fraud in this set were large dollar transactions, while our experience working in fraud has been that most fraudulent transactions and the total fraud on accounts are under $200 per transaction. As such, our model may inaccurately favor detecting larger transactions as fraud, which would not be evident until we were able to factor in more low-dollar fraud transactions.
 
+## Tableau Dashboard Visualization
 
+Please see description of each visualization below. By clicking on the Tableau Dashboard link you will be able to deep dive into each interactive worksheet
+
+![transamt](https://user-images.githubusercontent.com/100883212/186285254-08f7470a-4e37-4341-94fd-e6098501d8e0.png)<br/>
+*Total amount ($) of fraudulent transactions*
+
+ 
+![transcategory](https://user-images.githubusercontent.com/100883212/186285339-f95d35a7-22f9-4e93-a673-6708b9d15834.png)<br/>
+*Transactions by Merchant Category visualization shows how the total number of transactions was distributed among each merchant category* 
+
+ 
+![fraudcategory](https://user-images.githubusercontent.com/100883212/186285602-f3f20694-ec2f-411d-8ddf-5de81881bc94.png)<br/>
+*Fraud by Merchant Category visualization shows how the total number of fraudulent transactions was distributed among each merchant category*
+
+ 
+![transgender](https://user-images.githubusercontent.com/100883212/186285747-64a65755-b9cc-45cc-ac65-56cf5f73ecd7.png)<br/>
+*Transactions by Gender visualization shows the distribution of legitimate and fraudulent transactions by gender* 
+
+ 
+![fraudcity](https://user-images.githubusercontent.com/100883212/186286037-c5c18752-96ac-4822-9cd7-1cadeb5e0125.png)<br/>
+*Fraud by City visualization shows an interactive map of cities where fraudulent transactions occured. Once you hover over each circle will display the City/State, Zip code, total ($) of fraudulent transactions, and number of fraudulent transactions* 
+
+ 
+![transweek](https://user-images.githubusercontent.com/100883212/186286277-3465ca6d-a050-43f5-8dfe-9985e1e7b076.png)<br/>
+*Transactions by Week shows the distribution of fraudulent vs. legitimate transactions per week*
+
+ 
+![fraudweek](https://user-images.githubusercontent.com/100883212/186286365-bb1b9067-5c02-45a8-998a-3778b566890e.png)<br/>
+*Fraud by Week shows a closer look at how the fraudulent transactions were distributed by amount ($) over each week*
